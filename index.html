@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevNews</title>
+    <link rel="icon" href="app_logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lenis@1.2.3/dist/lenis.min.js"></script>
+    <script> window.chtlConfig = { chatbotId: "2956382455" } </script>
+    <script async data-id="2956382455" id="chatling-embed-script" type="text/javascript"
+        src="https://chatling.ai/js/embed.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-mono">
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-primary-dark to-primary bg-opacity-90 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" onclick="reload()" class="flex items-center space-x-3 group">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur-md opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative bg-black px-3 py-2 rounded-xl border border-slate-700">
+                            <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">&lt;/&gt;</span>
+                        </div>
+                    </div>
+                    <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-300">DevNews</span>
+                </a>
+
+                <!-- Navigation Items -->
+                <div class="hidden lg:flex items-center space-x-6">
+                    <div class="flex bg-slate-800/50 backdrop-blur-xl rounded-full p-1.5">
+                        <button class="nav-btn px-5 py-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-700/50 transition-all duration-300"
+                            onclick="onNavItemClick('india')" data-category="india">India</button>
+                        <button class="nav-btn px-5 py-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-700/50 transition-all duration-300"
+                            onclick="onNavItemClick('world')" data-category="world">World</button>
+                        <button class="nav-btn px-5 py-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-700/50 transition-all duration-300"
+                            onclick="onNavItemClick('technology')" data-category="technology">Tech</button>
+                        <button class="nav-btn px-5 py-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-700/50 transition-all duration-300"
+                            onclick="onNavItemClick('business')" data-category="business">Business</button>
+                        <button class="nav-btn px-5 py-2 text-slate-400 hover:text-white rounded-full hover:bg-slate-700/50 transition-all duration-300"
+                            onclick="onNavItemClick('sports')" data-category="sports">Sports</button>
+                    </div>
+                </div>
+
+                <!-- Right Section -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="toggleTheme()" 
+                        class="w-10 h-10 rounded-full flex items-center justify-center bg-slate-800 hover:bg-slate-700 transition-colors duration-300 border border-slate-700">
+                        <i class="fas fa-moon text-slate-400 dark:hidden"></i>
+                        <i class="fas fa-sun hidden text-slate-400 dark:block"></i>
+                    </button>
+                    <button onclick="toggleMenu()" 
+                        class="lg:hidden w-10 h-10 rounded-full flex items-center justify-center bg-slate-800 hover:bg-slate-700 transition-colors duration-300 border border-slate-700">
+                        <i class="fas fa-bars text-slate-400"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Slide Down) -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-800/50">
+            <div class="px-4 py-3 bg-slate-900/95 backdrop-blur-xl space-y-1">
+                <button onclick="onNavItemClick('india')" data-category="india"
+                    class="block w-full px-4 py-2 text-left text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-all duration-300">
+                    India
+                </button>
+                <button onclick="onNavItemClick('world')" data-category="world"
+                    class="block w-full px-4 py-2 text-left text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-all duration-300">
+                    World
+                </button>
+                <button onclick="onNavItemClick('technology')" data-category="technology"
+                    class="block w-full px-4 py-2 text-left text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-all duration-300">
+                    Tech
+                </button>
+                <button onclick="onNavItemClick('business')" data-category="business"
+                    class="block w-full px-4 py-2 text-left text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-all duration-300">
+                    Business
+                </button>
+                <button onclick="onNavItemClick('sports')" data-category="sports"
+                    class="block w-full px-4 py-2 text-left text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-all duration-300">
+                    Sports
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="w-full bg-gradient-to-r from-slate-900/50 to-slate-800/50 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <div id="sub-categories" class="flex items-center">
+                <!-- Sub-categories will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Dynamic Particles Background -->
+        <div class="particles-container absolute inset-0"></div>
+        
+        <!-- Animated Shapes -->
+        <div class="hero-shapes">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
+
+        <!-- Content Container - Will be replaced by recommendations -->
+        <div class="hero-content-wrapper relative z-10 w-full px-4">
+            <!-- Recommendations will be injected here -->
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="max-w-7xl mx-auto px-4 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div class="bg-gradient-to-r from-primary-lighter/20 to-primary-lighter/30 backdrop-blur-md p-6 rounded-lg border border-primary/10 shadow-sm">
+                <div class="text-4xl font-bold text-primary mb-2">5K+</div>
+                <div class="text-primary-dark">Daily Readers</div>
+            </div>
+            <div class="bg-gradient-to-r from-primary-lighter/20 to-primary-lighter/30 backdrop-blur-md p-6 rounded-lg border border-primary/10 shadow-sm">
+                <div class="text-4xl font-bold text-primary mb-2">200+</div>
+                <div class="text-primary-dark">Expert Authors</div>
+            </div>
+            <div class="bg-gradient-to-r from-primary-lighter/20 to-primary-lighter/30 backdrop-blur-md p-6 rounded-lg border border-primary/10 shadow-sm">
+                <div class="text-4xl font-bold text-primary mb-2">1.2M</div>
+                <div class="text-primary-dark">Monthly Views</div>
+            </div>
+            <div class="bg-gradient-to-r from-primary-lighter/20 to-primary-lighter/30 backdrop-blur-md p-6 rounded-lg border border-primary/10 shadow-sm">
+                <div class="text-4xl font-bold text-primary mb-2">24/7</div>
+                <div class="text-primary-dark">Tech Support</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Cards Section -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        <h2 id="main-heading" class="text-2xl font-bold mb-6 text-slate-900">Latest News</h2>
+        <div id="cards-container" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Cards will be injected here -->
+        </div>
+        <div id="scroll-sentinel" class="col-span-full py-4 flex justify-center">
+            <div class="loading-spinner"></div>
+        </div>
+    </main>
+
+    <div class="social-icons-floating">
+        <div class="social-icons-inner">
+            <a href="https://www.instagram.com/_anurag_kumar_01" target="_blank" 
+               class="social-link instagram" data-tooltip="Follow on Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/anurag-kumar-ab671528a/" target="_blank" 
+               class="social-link linkedin" data-tooltip="Connect on LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/AnuragkumarThakur1" target="_blank" 
+               class="social-link github" data-tooltip="Check GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <button onclick="scrollToContact()" 
+                    class="social-link contact" data-tooltip="Contact Us">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Update card template -->
+    <template id="template-news-card">
+        <div class="card shadow-xl hover:shadow-2xl transform hover:-translate-y-2 
+                    transition-all duration-300 ease-in-out rounded-xl overflow-hidden 
+                    group border border-primary border-opacity-10">
+            <div class="card-header">
+                <img src="https://via.placeholder.com/400x200" alt="news-image" id="news-img"
+                    class="transition-transform duration-500 ease-in-out group-hover:scale-105">
+            </div>
+            <div class="card-content">
+                <h3 id="news-title" class="font-semibold text-gray-900 group-hover:text-blue-700 transition-colors"></h3>
+                <h6 id="news-source" class="text-xs text-gray-500 mt-1"></h6>
+                <p id="news-desc" class="text-gray-700 text-sm mt-2"></p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Error template -->
+    <template id="error-template">
+        <div class="text-center py-20">
+            <div class="mb-4 text-gray-400">
+                <i class="fas fa-exclamation-circle text-4xl"></i>
+            </div>
+            <p class="text-gray-500">{{message}}</p>
+            <button onclick="retryFetch()" class="mt-4 px-6 py-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-all">
+                Try Again
+            </button>
+        </div>
+    </template>
+
+    <!-- Footer -->
+    <footer class="bg-primary-bg relative overflow-hidden">
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-b from-blue-600/5 to-purple-600/5"></div>
+        
+        <!-- Main Footer Content -->
+        <div class="max-w-7xl mx-auto px-6 py-16 relative z-10">
+            <!-- Top Section -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <!-- Brand Section -->
+                <div class="col-span-1">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="text-blue-500 text-2xl font-bold">&lt;/&gt;</div>
+                        <span class="text-2xl font-semibold text-white">DevNews</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Your trusted source for the latest news and updates from around the world.</p>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">Latest News</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">Press Room</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Resources -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">Terms of Use</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Contact Us</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-envelope w-5 text-blue-400"></i>
+                            <a href="mailto:toofanexpress@gmail.com" class="ml-3 hover:text-blue-400 transition-colors duration-300">toofanexpress@gmail.com</a>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-phone w-5 text-blue-400"></i>
+                            <a href="tel:+91025532553" class="ml-3 hover:text-blue-400 transition-colors duration-300">+91 01125532553</a>
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-map-marker-alt w-5 text-blue-400"></i>
+                            <span class="ml-3">New Delhi, India - 110091</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Divider -->
+            <div class="border-t border-gray-800"></div>
+            
+            <!-- Bottom Section -->
+            <div class="pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2024 DevNews. All rights reserved.</p>
+                <!-- Social Links -->
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="https://github.com/AnuragkumarThakur1" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/anurag-kumar-ab671528a/" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_anurag_kumar_01" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
